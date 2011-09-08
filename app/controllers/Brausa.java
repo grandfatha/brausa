@@ -24,12 +24,18 @@ public class Brausa extends Controller {
     	String xml = WS.url(url).get().getString();
 
     	Document doc = XML.getDocument(StringEscapeUtils.unescapeHtml(xml));
-    	List<Node> links = XPath.selectNodes("//*[contains(text(), '[link]')]", doc.getDocumentElement().getFirstChild());
+//    	List<Node> links = XPath.selectNodes("//*[contains(text(), '[link]')]", doc.getDocumentElement().getFirstChild());
+    	List<Node> links = XPath.selectNodes("//a[contains(@href, 'imgur')]", doc.getDocumentElement().getFirstChild());
     	
     	List<String> nodes = new ArrayList<String>();
     	
     	for (Node node : links) {
 			String href = node.getAttributes().getNamedItem("href").getTextContent();
+			
+			// convert to direct link in imgur = append file extension
+			if(!href.endsWith(".jpg")){
+				href = href + ".jpg";
+			}
 			nodes.add(href);
 		}
     	render(xml, nodes);

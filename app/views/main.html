@@ -5,10 +5,17 @@
         <title>Brausa</title>
         <meta charset="${_response_encoding}">
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+		<link rel="stylesheet" href="@{'/public/stylesheets/supersized.css'}" type="text/css" media="screen" />
+		<link rel="stylesheet" href="@{'/public/stylesheets/supersized.shutter.css'}" type="text/css" media="screen" />
         #{get 'moreStyles' /}
+
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/jquery.easing.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>		
+		<script type="text/javascript" src="@{'/public/javascripts/supersized.3.2.4.min.js'}"></script>
+		<script type="text/javascript" src="@{'/public/javascripts/supersized.shutter.min.js'}"></script>
         #{get 'moreScripts' /}
+
     </head>
     <body>
         #{doLayout /}
