@@ -1,0 +1,5 @@
+#{extends 'main.html' /}
+
+#{list items:nodes, as:'n'}
+	<img src="${n.raw()}" style="max-width:800px;"></img>
+#{/list}
