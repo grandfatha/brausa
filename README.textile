@@ -1,0 +1,7 @@
+h1. Brausa
+
+I was very excited when I read that Heroku started supporting PlayFramework applications (http://blog.heroku.com/archives/2011/8/29/play/). After @_felipera wrote a perfect getting-started blog on how to get a play-app on Heroku (see here: http://geeks.aretotally.in/twitter-playframework-heroku), I just had to try it. But what exactly would I build? I figured, it should be an app that improves something I do every day. Being the type of guy that visits reddit now and then, I thought about getting rid of the clutter and all the necessary clicks to view the beautiful nature images that are posted there every single day. The best thing is to build something for yourself. No extrinsic motivation required, extremely low feedback-cycle due to the customer being yourself. So my idea was to parse reddits RSS feed for those images that are hosted on imgur.com and stuff them into a nice looking, keyboard driven gallery.
+
+The gallery is a jquery plugin, which can be found here: http://www.buildinternet.com/project/supersized/
+
+Right now the pictures are loaded from the Earthporn subreddit, but I will add support for any subreddits soon.
