@@ -38,9 +38,9 @@ public class Brausa extends Controller {
     		String title = XPath.selectText("title", node);
     		String url = XPath.selectText("link", node);
     		String thumb = XPath.selectText("thumbnail/@url", node);
-//    		String image = XPath.selectText("//a[contains(@href, 'imgur')]/@href", node);
     		String image = XPath.selectText("description/table/tr/td/a[contains(@href, 'imgur')]/@href", node);
     		
+    		// flickr links, etc
     		if(image == null){
     			continue;
     		}
@@ -49,10 +49,10 @@ public class Brausa extends Controller {
 				image += ".jpg";
 			}
     		
-    		System.out.println(title);
-    		System.out.println(url);
-    		System.out.println(thumb);
-    		System.out.println(image);
+//    		System.out.println(title);
+//    		System.out.println(url);
+//    		System.out.println(thumb);
+//    		System.out.println(image);
 			
 			Map<String,String> entry = new HashMap<String,String>();
 			entry.put("title", title);
