@@ -2,55 +2,119 @@
 
 #{set 'moreScripts' }
 
-	<script type="text/javascript">  
-		
-		jQuery(function($){
-			$.supersized({
-			
-				//Functionality
-				slideshow               :   1,		//Slideshow on/off
-				autoplay				:	0,		//Slideshow starts playing automatically
-				start_slide             :   1,		//Start slide (0 is random)
-				random					: 	0,		//Randomize slide order (Ignores start slide)
-				slide_interval          :   3000,	//Length between transitions
-				transition              :   6, 		//0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
-				transition_speed		:	1000,	//Speed of transition
-				new_window				:	1,		//Image links open in new window/tab
-				pause_hover             :   1,		//Pause slideshow on hover
-				keyboard_nav            :   1,		//Keyboard navigation on/off
-				performance				:	2,		//0-Normal, 1-Hybrid speed/quality, 2-Optimizes image quality, 3-Optimizes transition speed // (Only works for Firefox/IE, not Webkit)
-				image_protect			:	1,		//Disables image dragging and right click with Javascript
-				image_path				:	'/public/images', //Default image path
+    <script type="text/javascript">  
+        
+		$(function(){
+			$("body").bind("click", function (e) {
+				$('.dropdown-toggle, .menu').parent("li").removeClass("open");
+		  	});
+			$(".dropdown-toggle, .menu").click(function (e) {
+				var $li = $(this).parent("li").toggleClass('open');
+				return false;
+			});
+		});
 
-				//Size & Position
-				min_width		        :   1024,		//Min width allowed (in pixels)
-				min_height		        :   768,		//Min height allowed (in pixels)
-				vertical_center         :   1,		//Vertically center background
-				horizontal_center       :   1,		//Horizontally center background
-				fit_portrait         	:   1,		//Portrait images will not exceed browser height
-				fit_landscape			:   0,		//Landscape images will not exceed browser width
-				
-				//Components
-				navigation              :   1,		//Slideshow controls on/off
-				thumbnail_navigation    :   1,		//Thumbnail navigation
-				slide_counter           :   1,		//Display slide numbers
-				slide_captions          :   1,		//Slide caption (Pull from "title" in slides array)
-				slide_links				:   'blank',
-				slides 					:  	[		//Slideshow Images
-						#{list items:data, as:'entry'}
-							{image : '${entry.image?.raw()}', 
-							thumb:'${entry.thumb.raw()}', 
-							title:"${entry.title.escape()}", 
-							url:'${entry.url.raw()}'}#{ifnot n_isLast },#{/ifnot}	
-						#{/list}
-											]
-			}); 
-	    });
-	    
-	</script>
+        $(function(){
+            $.supersized({
+            
+                //Functionality
+                slideshow               :   1,      //Slideshow on/off
+                autoplay                :   0,      //Slideshow starts playing automatically
+                start_slide             :   1,      //Start slide (0 is random)
+                random                  :   0,      //Randomize slide order (Ignores start slide)
+                slide_interval          :   3000,   //Length between transitions
+                transition              :   6,      //0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+                transition_speed        :   1000,   //Speed of transition
+                new_window              :   1,      //Image links open in new window/tab
+                pause_hover             :   0,      //Pause slideshow on hover
+                keyboard_nav            :   1,      //Keyboard navigation on/off
+                performance             :   2,      //0-Normal, 1-Hybrid speed/quality, 2-Optimizes image quality, 3-Optimizes transition speed // (Only works for Firefox/IE, not Webkit)
+                image_protect           :   1,      //Disables image dragging and right click with Javascript
+                image_path              :   '/public/images', //Default image path
+
+                //Size & Position
+                min_width               :   1024,       //Min width allowed (in pixels)
+                min_height              :   768,        //Min height allowed (in pixels)
+                vertical_center         :   1,      //Vertically center background
+                horizontal_center       :   1,      //Horizontally center background
+                fit_portrait            :   1,      //Portrait images will not exceed browser height
+                fit_landscape           :   0,      //Landscape images will not exceed browser width
+                
+                //Components
+                navigation              :   1,      //Slideshow controls on/off
+                thumbnail_navigation    :   1,      //Thumbnail navigation
+                thumb_links             :   1,
+                slide_counter           :   1,      //Display slide numbers
+                slide_captions          :   1,      //Slide caption (Pull from "title" in slides array)
+                slide_links             :   'blank',
+                slides                  :   [       //Slideshow Images
+                        #{list items:data, as:'entry'}
+                            {image : '${entry.image?.raw()}', 
+                            thumb:'${entry.thumb?.raw()}', 
+                            title:"${entry.title}", 
+                            url:'${entry.url?.raw()}'}#{ifnot n_isLast },#{/ifnot}   
+                        #{/list}
+                                            ]
+            });
+
+
+        });
+        
+    </script>
 
 #{/set}
 
+<div class="topbar">
+      <div class="topbar-inner">
+        <div class="container">
+          <h3><a href="/">Brausa</a></h3>
+          <ul class="nav">
+            <li class=""><a href="@{index('earth')}">Earth</a></li>
+            <li class=""><a href="@{index('human')}">Humans</a></li>
+            <li class=""><a href="@{index('cities')}">Cities</a></li>
+            <li class=""><a href="@{index('animal')}">Animals</a></li>
+            <li class=""><a href="@{index('water')}">Water</a></li>
+            <li class=""><a href="@{index('space')}">Space</a></li>
+            <li class="dropdown">
+				 <a href="#" class="dropdown-toggle">More</a>
+					 <ul class="dropdown-menu">
+						 <li><a href="@{index('machine')}">Machine</a></li>
+						 <li><a href="@{index('destruction')}">Destruction</a></li>
+						 <li><a href="@{index('map')}">Map</a></li>
+						 <li><a href="@{index('geek')}">Geek</a></li>
+						 <li><a href="@{index('room')}">Room</a></li>
+						 <li><a href="@{index('book')}">book</a></li>
+						 <li><a href="@{index('adrenaline')}">Adrenaline</a></li>
+						 <li><a href="@{index('history')}">History</a></li>
+						 <li><a href="@{index('ad')}">Ad</a></li>
+						 <li><a href="@{index('village')}">Village</a></li>
+						 <li><a href="@{index('albumart')}">AlbumArt</a></li>
+						 <li><a href="@{index('abandoned')}">Abandoned</a></li>
+						 <li><a href="@{index('news')}">News</a></li>
+						 <li><a href="@{index('quotes')}">Quotes</a></li>
+						 <li><a href="@{index('design')}">Design</a></li>
+						 <li><a href="@{index('movieposter')}">MoviePoster</a></li>
+						 <li><a href="@{index('military')}">Military</a></li>
+						 <li><a href="@{index('bestofsfw')}">BestOfSFW</a></li>
+						 <li><a href="@{index('meta')}">Meta</a></li>
+						 <li><a href="@{index('cemetery')}">Cemetery</a></li>
+						 *{ <li class="divider"></li> }*
+					 </ul>
+            </li>
+            *{  <li class=""><a href="#about">About</a></li>
+            <li class=""><a href="#grid-system">Grid</a></li>
+            <li class=""><a href="#layouts">Layouts</a></li>
+            <li class=""><a href="#typography">Typography</a></li>
+            <li class=""><a href="#tables">Tables</a></li>
+            <li class="active"><a href="#forms">Forms</a></li>
+            <li class=""><a href="#navigation">Navigation</a></li>
+            <li class=""><a href="#alerts">Alerts</a></li>
+            <li class=""><a href="#popovers">Popovers</a></li>
+            <li class=""><a href="#less">Less</a></li>}*
+          </ul>
+        </div>
+      </div>
+    </div>
 
 <!--Thumbnail Navigation-->
 <div id="prevthumb"></div>
@@ -61,35 +125,35 @@
 <a id="nextslide" class="load-item"></a>
 
 <div id="thumb-tray" class="load-item">
-	<div id="thumb-back"></div>
-	<div id="thumb-forward"></div>
+    <div id="thumb-back"></div>
+    <div id="thumb-forward"></div>
 </div>
 
 <!--Time Bar-->
 <div id="progress-back" class="load-item">
-	<div id="progress-bar"></div>
+    <div id="progress-bar"></div>
 </div>
 
 <!--Control Bar-->
 <div id="controls-wrapper" class="load-item">
-	<div id="controls">
-		
-		<a id="play-button"><img id="pauseplay" src="@{'/public/images/pause.png'}"/></a>
-	
-		<!--Slide counter-->
-		<div id="slidecounter">
-			<span class="slidenumber"></span> / <span class="totalslides"></span>
-		</div>
-		
-		<!--Slide captions displayed here-->
-		<div id="slidecaption"></div>
-		
-		<!--Thumb Tray button-->
-		<a id="tray-button"><img id="tray-arrow" src="@{'/public/images/button-tray-up.png'}"/></a>
-		
-		<!--Navigation-->
-		<ul id="slide-list"></ul>
-		
-	</div>
+    <div id="controls">
+        
+        <a id="play-button"><img id="pauseplay" src="@{'/public/images/pause.png'}"/></a>
+    
+        <!--Slide counter-->
+        <div id="slidecounter">
+            <span class="slidenumber"></span> / <span class="totalslides"></span>
+        </div>
+        
+        <!--Slide captions displayed here-->
+        <div id="slidecaption"></div>
+        
+        <!--Thumb Tray button-->
+        <a id="tray-button"><img id="tray-arrow" src="@{'/public/images/button-tray-up.png'}"/></a>
+        
+        <!--Navigation-->
+        *{ <ul id="slide-list"></ul> }*
+        
+    </div>
 </div>
 

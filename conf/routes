@@ -3,6 +3,7 @@
 # ~~~~
 
 # Home page
+GET		/{subreddit}							Brausa.index
 GET     /                                       Brausa.index
 
 # Ignore favicon requests
