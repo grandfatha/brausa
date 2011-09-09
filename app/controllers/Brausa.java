@@ -56,7 +56,7 @@ public class Brausa extends Controller {
 				if(image.contains("imgur") && !image.endsWith(".jpg")){
 					image += ".jpg";
 				}
-				Logger.info("image-url: "+image);
+//				Logger.info("image-url: "+image);
 				
 				Map<String,String> entry = new HashMap<String,String>();
 				entry.put("title", title);
@@ -65,7 +65,7 @@ public class Brausa extends Controller {
 				entry.put("image", image);
 				data.add(entry);
 			} catch (Exception e) {
-				Logger.error(e, "Failed to parse rss-item, skipping it.");
+//				Logger.error(e, "Failed to parse rss-item, skipping it.");
 			}
     	}
     	
