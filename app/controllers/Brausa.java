@@ -44,11 +44,11 @@ public class Brausa extends Controller {
 				Node embeddedhtml = XPath.selectNode("description", node);
 				
 				Document html = XML.getDocument("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+
-						"<bs>"+embeddedhtml.getTextContent()+"</bs>");
+						"<bullshit>"+embeddedhtml.getTextContent()+"</bullshit>");
 				String image = XPath.selectText("//*[contains(text(), '[link]')]/@href", html.getDocumentElement());
 
 				// TODO: find a away to extract links to the actual image from flickr
-				if(image.contains("www.flickr.com")){
+				if(image.contains("www.flickr.com") || image.contains("youtube.com")){
 					continue;
 				}
 				
@@ -65,16 +65,22 @@ public class Brausa extends Controller {
 				entry.put("image", image);
 				data.add(entry);
 			} catch (Exception e) {
-//				Logger.error(e, "Failed to parse rss-item, skipping it.");
+				Logger.debug(e, "Failed to parse rss-item, skipping it.");
 			}
     	}
     	
     	render(data);
     }
 
+    public static void anysubreddit(String anysubreddit){
+    	params.flash();
+    	index(anysubreddit);
+    }
+    
 	private static String getURL(String subreddit) {
 		subreddit = (subreddit == null || subreddit.length() == 0) ? "earth" : subreddit;
-		String area = key2url.get(subreddit);
+		String knownarea = key2url.get(subreddit);
+		String area = knownarea == null ? subreddit : knownarea;
 		return "http://www.reddit.com/r/"+area+".rss";
 	}
 

@@ -3,6 +3,7 @@
 # ~~~~
 
 # Home page
+POST	/anysubreddit							Brausa.anysubreddit
 GET		/{subreddit}							Brausa.index
 GET     /                                       Brausa.index
 
